@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UnityActionSystem : MonoBehaviour
 {
+    public event EventHandler OnSelectedUnitChanged;
+
     [SerializeField] Unit selectedUnity;
     [SerializeField] LayerMask unitLayerMask;
-
 
     private void Update()
     {
@@ -24,10 +26,21 @@ public class UnityActionSystem : MonoBehaviour
         {
             if(raycastHit.transform.TryGetComponent<Unit>(out Unit unit))
             {
-                selectedUnity = unit;
+                SetSelectedUnit(unit);
                 return true;
             }
         }
         return false;
+    }
+
+    void SetSelectedUnit(Unit unit)
+    {
+        selectedUnity = unit;
+        OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public Unit GetSelectedUnit()
+    {
+        return selectedUnity;
     }
 }
