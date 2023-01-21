@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    [SerializeField] private Animator unityAnimator;
     Vector3 targetPosition;
+
+    private void Awake()
+    {
+        targetPosition = transform.position;
+    }
 
     private void Update()
     {
@@ -14,15 +21,16 @@ public class Unit : MonoBehaviour
             Vector3 moveDirection = (targetPosition - transform.position).normalized;
             float moveSpeed = 4f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
-        }
-
-        if (Input.GetKeyDown(KeyCode.T))
+            float rotateSpeed = 10f;
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, rotateSpeed * Time.deltaTime);
+            unityAnimator.SetBool("IsWalking", true);
+        } else
         {
-            Move(new Vector3(4, 0, 0));
+            unityAnimator.SetBool("IsWalking", false);
         }
     }
 
-    void Move(Vector3 targetPosition)
+    public void Move(Vector3 targetPosition)
     {
         this.targetPosition= targetPosition;
     }
