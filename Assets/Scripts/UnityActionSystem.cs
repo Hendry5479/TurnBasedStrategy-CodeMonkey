@@ -8,7 +8,7 @@ public class UnityActionSystem : MonoBehaviour
     public static UnityActionSystem Instance { get; private set; }
     public event EventHandler OnSelectedUnitChanged;
 
-    [SerializeField] Unit selectedUnity;
+    [SerializeField] Unit selectedUnit;
     [SerializeField] LayerMask unitLayerMask;
 
     private void Awake()
@@ -27,7 +27,11 @@ public class UnityActionSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (TryHandleUnitSelection()) return;
-            selectedUnity.GetMoveAction().Move(MouserWorld.GetPosition());
+            GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouserWorld.GetPosition());
+            if (selectedUnit.GetMoveAction().IsValidActionGridPosition(mouseGridPosition))
+            {
+                selectedUnit.GetMoveAction().Move(mouseGridPosition);
+            }
         }
     }
 
@@ -47,12 +51,12 @@ public class UnityActionSystem : MonoBehaviour
 
     void SetSelectedUnit(Unit unit)
     {
-        selectedUnity = unit;
+        selectedUnit = unit;
         OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public Unit GetSelectedUnit()
     {
-        return selectedUnity;
+        return selectedUnit;
     }
 }
