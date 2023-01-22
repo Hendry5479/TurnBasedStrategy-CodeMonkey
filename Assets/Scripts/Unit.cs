@@ -22,13 +22,18 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(LevelGrid.Instance.GetGridPosition(transform.position));
+        }
+
         float stoppingDistance = 0.1f;
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
             Vector3 moveDirection = (targetPosition - transform.position).normalized;
             float moveSpeed = 4f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
-            float rotateSpeed = 10f;
+            float rotateSpeed = 14f;
             transform.forward = Vector3.Lerp(transform.forward, moveDirection, rotateSpeed * Time.deltaTime);
             unityAnimator.SetBool("IsWalking", true);
         } else
@@ -46,6 +51,6 @@ public class Unit : MonoBehaviour
 
     public void Move(Vector3 targetPosition)
     {
-        this.targetPosition= targetPosition;
+        this.targetPosition = targetPosition;
     }
 }

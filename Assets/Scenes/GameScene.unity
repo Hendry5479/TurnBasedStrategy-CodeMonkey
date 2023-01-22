@@ -298,14 +298,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.4383711, y: 0, z: 0, w: 0.89879405}
-  m_LocalPosition: {x: 0, y: 7, z: -7}
+  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
+  m_LocalPosition: {x: 0, y: 7, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 52, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,8 +544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99955c14ec3957429f4c5678763f17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridDebugObjectPrefab: {fileID: 6342740190453192835, guid: 99659e36c7ff0e049b0be522319c3a47,
-    type: 3}
 --- !u!4 &859942140
 Transform:
   m_ObjectHideFlags: 0
@@ -983,6 +981,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5784366356127992699, guid: b3e12a0a4488eb948a01c571113e9034,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e12a0a4488eb948a01c571113e9034, type: 3}
 --- !u!1001 &2088972569
@@ -1066,7 +1069,7 @@ PrefabInstance:
     - target: {fileID: 5784366356127992698, guid: b3e12a0a4488eb948a01c571113e9034,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5784366356127992698, guid: b3e12a0a4488eb948a01c571113e9034,
         type: 3}
@@ -1076,7 +1079,7 @@ PrefabInstance:
     - target: {fileID: 5784366356127992698, guid: b3e12a0a4488eb948a01c571113e9034,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5784366356127992698, guid: b3e12a0a4488eb948a01c571113e9034,
         type: 3}
