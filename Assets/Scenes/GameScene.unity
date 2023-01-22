@@ -280,7 +280,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252348165}
-  m_LocalRotation: {x: 0.46181038, y: -0.000000012572494, z: 0.0000000065459402, w: 0.88697875}
+  m_LocalRotation: {x: 0.46181038, y: 0.000000015261694, z: -0.0000000079460865, w: 0.8869787}
   m_LocalPosition: {x: 0, y: 10, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -465,7 +465,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.46181038, y: -0.000000012572494, z: 0.0000000065459402, w: 0.88697875}
+  m_LocalRotation: {x: 0.46181038, y: 0.000000015261694, z: -0.0000000079460865, w: 0.8869787}
   m_LocalPosition: {x: 0, y: 10, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1124,6 +1124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1886087489}
+  - component: {fileID: 1886087490}
   m_Layer: 0
   m_Name: CameraController
   m_TagString: Untagged
@@ -1146,6 +1147,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1886087490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886087488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca2a529ae52823499c49e53d1c3a7f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1886983348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1211,7 +1224,7 @@ PrefabInstance:
     - target: {fileID: 5784366356127992699, guid: b3e12a0a4488eb948a01c571113e9034,
         type: 3}
       propertyPath: m_Name
-      value: Unit (1)
+      value: Unit B
       objectReference: {fileID: 0}
     - target: {fileID: 5784366356127992699, guid: b3e12a0a4488eb948a01c571113e9034,
         type: 3}
@@ -1351,7 +1364,7 @@ PrefabInstance:
     - target: {fileID: 5784366356127992699, guid: b3e12a0a4488eb948a01c571113e9034,
         type: 3}
       propertyPath: m_Name
-      value: Unit
+      value: Unit A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e12a0a4488eb948a01c571113e9034, type: 3}

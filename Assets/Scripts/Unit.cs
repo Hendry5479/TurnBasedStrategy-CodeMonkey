@@ -22,11 +22,6 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(LevelGrid.Instance.GetGridPosition(transform.position));
-        }
-
         float stoppingDistance = 0.1f;
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
