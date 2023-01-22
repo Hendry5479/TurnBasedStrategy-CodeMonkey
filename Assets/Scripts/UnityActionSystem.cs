@@ -27,7 +27,7 @@ public class UnityActionSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (TryHandleUnitSelection()) return;
-            selectedUnity.Move(MouserWorld.GetPosition());
+            selectedUnity.GetMoveAction().Move(MouserWorld.GetPosition());
         }
     }
 
