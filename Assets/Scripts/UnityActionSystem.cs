@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UnityActionSystem : MonoBehaviour
 {
@@ -37,6 +38,11 @@ public class UnityActionSystem : MonoBehaviour
             return;
         }
 
+        //if (EventSystem.current.IsPointerOverGameObject()) 
+        //{
+        //    return;
+        //}
+
         if (TryHandleUnitSelection())
         {
             return;
@@ -49,20 +55,11 @@ public class UnityActionSystem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            switch (selectedAction)
-            {
-                case MoveAction moveAction:
-                    GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouserWorld.GetPosition());
-                    if (moveAction.IsValidActionGridPosition(mouseGridPosition))
-                    {
-                        SetBusy();
-                        moveAction.Move(mouseGridPosition, ClearBusy);
-                    }
-                    break;
-                case SpinAction spinAction:
-                    SetBusy();
-                    spinAction.Spin(ClearBusy);
-                    break;
+            GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouserWorld.GetPosition());
+
+            if (selectedAction.IsValidActionGridPosition(mouseGridPosition)) {
+                SetBusy();
+                selectedAction.TakeAction(mouseGridPosition, ClearBusy);
             }
         }
     }
@@ -86,6 +83,11 @@ public class UnityActionSystem : MonoBehaviour
             {
                 if (raycastHit.transform.TryGetComponent<Unit>(out Unit unit))
                 {
+                    if (unit == selectedUnit)
+                    {
+                        //unit already selected
+                        return false;
+                    }
                     SetSelectedUnit(unit);
                     return true;
                 }
@@ -109,5 +111,10 @@ public class UnityActionSystem : MonoBehaviour
     public Unit GetSelectedUnit()
     {
         return selectedUnit;
+    }
+
+    public BaseAction GetSelectedAction()
+    {
+        return selectedAction;
     }
 }
