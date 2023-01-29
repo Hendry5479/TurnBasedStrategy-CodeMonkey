@@ -7,7 +7,9 @@ using UnityEngine.EventSystems;
 public class UnityActionSystem : MonoBehaviour
 {
     public static UnityActionSystem Instance { get; private set; }
+
     public event EventHandler OnSelectedUnitChanged;
+    public event EventHandler OnSelectedActionChanged;
 
     [SerializeField] Unit selectedUnit;
     [SerializeField] LayerMask unitLayerMask;
@@ -106,6 +108,7 @@ public class UnityActionSystem : MonoBehaviour
     public void SetSelectedAction(BaseAction baseAction)
     {
         selectedAction = baseAction;
+        OnSelectedActionChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public Unit GetSelectedUnit()
