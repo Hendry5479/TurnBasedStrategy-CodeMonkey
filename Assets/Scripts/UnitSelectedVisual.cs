@@ -8,12 +8,12 @@ public class UnitSelectedVisual : MonoBehaviour
     [SerializeField] Unit unit;
     MeshRenderer meshRenderer;
 
-    private void Awake()
+    void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    private void Start()
+    void Start()
     {
         UnityActionSystem.Instance.OnSelectedUnitChanged += UnitActionSystem_OnSelectedUnitChanged;
         UpdateVisual();
@@ -24,7 +24,7 @@ public class UnitSelectedVisual : MonoBehaviour
         UpdateVisual();
     }
 
-    private void UpdateVisual()
+    void UpdateVisual()
     {
         if (UnityActionSystem.Instance.GetSelectedUnit() == unit)
         {
@@ -34,5 +34,10 @@ public class UnitSelectedVisual : MonoBehaviour
         {
             meshRenderer.enabled = false;
         }
+    }
+
+    private void OnDestroy()
+    {
+        UnityActionSystem.Instance.OnSelectedUnitChanged -= UnitActionSystem_OnSelectedUnitChanged;
     }
 }
