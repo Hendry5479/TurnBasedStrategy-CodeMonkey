@@ -13,7 +13,7 @@ public class LevelGrid : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("There's more than one UnityActionSystem! " + transform + " - " + Instance);
+            Debug.LogError("There's more than one LevelGrid! " + transform + " - " + Instance);
             Destroy(gameObject);
             return;
         }

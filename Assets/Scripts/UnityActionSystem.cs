@@ -47,10 +47,10 @@ public class UnityActionSystem : MonoBehaviour
             return;
         }
 
-        //if (EventSystem.current.IsPointerOverGameObject()) 
-        //{
-        //    return;
-        //}
+        if (IsPointerOverUIObject()) 
+        {
+            return;
+        }
 
         if (TryHandleUnitSelection())
         {
@@ -144,5 +144,23 @@ public class UnityActionSystem : MonoBehaviour
     public BaseAction GetSelectedAction()
     {
         return selectedAction;
+    }
+
+    public bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+
+        for (int i = 0; i < results.Count; i++)
+        {
+            if (results[i].gameObject.layer == 5) //5 = UI layer
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
