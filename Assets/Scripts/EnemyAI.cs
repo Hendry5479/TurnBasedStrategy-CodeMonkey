@@ -87,21 +87,39 @@ public class EnemyAI : MonoBehaviour
 
     bool TryTakeEnemyAIAction(Unit enemyUnit, Action onEnemyAIActionComplete)
     {
-        SpinAction spinAction = enemyUnit.GetSpinAction();
+        EnemyAIAction bestEnemyAIAction = null;
+        BaseAction bestBaseAction = null;
+        foreach(BaseAction baseAction in enemyUnit.GetBaseActionArray())
+        {
+            if(!enemyUnit.CanSpendActionPointsToTakeAction(baseAction))
+            {
+                //No Action Points enough for this action, go to next
+                continue;
+            }
 
-        GridPosition actionGridPosition = enemyUnit.GetGridPosition();
+            if(bestEnemyAIAction == null)
+            {
+                bestEnemyAIAction = baseAction.GetBestEnemyAIAction();
+                bestBaseAction = baseAction;
+            } else
+            {
+                EnemyAIAction testEnemyAIAction = baseAction.GetBestEnemyAIAction();
+                if(testEnemyAIAction != null && testEnemyAIAction.actionValue > bestEnemyAIAction.actionValue) {
+                    bestEnemyAIAction = testEnemyAIAction;
+                    bestBaseAction = baseAction;
+                }
+            }
+            
+        }
 
-        if (!spinAction.IsValidActionGridPosition(actionGridPosition))
+        Debug.Log(bestEnemyAIAction);
+
+        if (bestEnemyAIAction != null &&  enemyUnit.TrySpendActionPointsToTakeAction(bestBaseAction)) {
+            bestBaseAction.TakeAction(bestEnemyAIAction.gridPosition, onEnemyAIActionComplete);
+            return true;
+        } else
         {
             return false;
         }
-
-        if (!enemyUnit.TrySpendActionPointsToTakeAction(spinAction))
-        {
-            return false;
-        }
-
-        spinAction.TakeAction(actionGridPosition, onEnemyAIActionComplete);
-        return true;
     }
 }
